@@ -20,22 +20,23 @@ func main() {
 		os.Exit(1)
 	}
 
-	var in = &plugin.Input{}
-	if err := json.Unmarshal(b, in); err != nil {
+	var in = plugin.Input{}
+	if err := json.Unmarshal(b, &in); err != nil {
 		fmt.Printf("Error unmarshalling stdin : %s", err)
 		os.Exit(1)
 	}
 
 	name := namesgenerator.GetRandomName(0)
-	if len(*in) > 1 {
-		s := strings.Join([]string(*in), "_")
-		out := plugin.Output{name + "_" + s}
-		bOut, _ := json.Marshal(out)
-		fmt.Print(string(bOut))
-		return
+	var out *plugin.Output
+	if len(in) > 1 {
+		s := strings.Join([]string(in), "_")
+		out = &plugin.Output{name + "_" + s}
 	}
 
-	out := plugin.Output{name}
+	if out == nil {
+		out = &plugin.Output{name}
+	}
+
 	bOut, _ := json.Marshal(out)
 	fmt.Print(string(bOut))
 }

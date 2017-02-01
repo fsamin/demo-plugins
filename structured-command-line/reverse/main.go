@@ -26,13 +26,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	var in = &plugin.Input{}
-	if err := json.Unmarshal(b, in); err != nil {
+	var in = plugin.Input{}
+	if err := json.Unmarshal(b, &in); err != nil {
 		fmt.Printf("Error unmarshalling stdin : %s", err)
 		os.Exit(1)
 	}
 
-	s := strings.Join([]string(*in), "_")
+	s := strings.Join([]string(in), "_")
 	name := reverse(s)
 
 	out := plugin.Output{name}
