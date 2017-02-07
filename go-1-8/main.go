@@ -29,12 +29,12 @@ func main() {
 func registerPlugin(path string) (*Plugin, error) {
 	p, err := plugin.Open(path)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	funcSymbol, err := p.Lookup("Greetings")
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	greet := funcSymbol.(func(...string) string)

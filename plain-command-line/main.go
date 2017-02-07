@@ -7,7 +7,6 @@ import (
 	"os/exec"
 )
 
-/*
 func main() {
 	p, err := registerPlugin("github.com/golang-rennes/demo-plugins/plain-command-line/world", "world")
 	if err != nil {
@@ -16,7 +15,7 @@ func main() {
 	if err := execPlugin(p); err != nil {
 		panic(err)
 	}
-}*/
+}
 
 func registerPlugin(p, c string) (*Plugin, error) {
 	b, err := exec.Command("go", "install", p).CombinedOutput()
@@ -60,6 +59,7 @@ func runPlugin(p *Plugin, args ...string) error {
 	return nil
 }
 
+/*
 func main() {
 	var pluginExecs = []struct {
 		Pkg string
@@ -80,3 +80,4 @@ func main() {
 		}
 	}
 }
+*/
