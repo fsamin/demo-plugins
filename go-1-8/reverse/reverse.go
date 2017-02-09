@@ -3,6 +3,8 @@ package main
 import (
 	"C"
 	"strings"
+
+	"github.com/golang-rennes/demo-plugins/go-1-8/types"
 )
 
 type reverseGreeter struct{}
@@ -19,4 +21,4 @@ func (g reverseGreeter) Greetings(args ...string) string {
 	return name
 }
 
-var Greeter = reverseGreeter{}
+var Greeter = types.Greeter(reverseGreeter{})

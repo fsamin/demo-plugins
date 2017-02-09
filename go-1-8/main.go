@@ -39,7 +39,7 @@ func registerPlugin(path string) (*Plugin, error) {
 		return nil, err
 	}
 
-	greet := interfaceSymbol.(types.Greeter)
+	greet := *interfaceSymbol.(*types.Greeter)
 
 	log.Printf("Plugin successfully installed\n")
 
