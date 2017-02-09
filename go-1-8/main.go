@@ -34,18 +34,18 @@ func registerPlugin(path string) (*Plugin, error) {
 		return nil, err
 	}
 
-	funcSymbol, err := p.Lookup("Greetings")
+	interfaceSymbol, err := p.Lookup("Greeter")
 	if err != nil {
 		return nil, err
 	}
 
-	greet := *funcSymbol.(*types.MyFunc)
+	greet := interfaceSymbol.(types.Greeter)
 
 	log.Printf("Plugin successfully installed\n")
 
 	plugin := &Plugin{
-		Path:      path,
-		Greetings: greet,
+		Path:    path,
+		Greeter: greet,
 	}
 
 	return plugin, nil
