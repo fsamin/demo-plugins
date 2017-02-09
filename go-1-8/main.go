@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"plugin"
+
+	"github.com/golang-rennes/demo-plugins/go-1-8/types"
 )
 
 func main() {
@@ -37,7 +39,7 @@ func registerPlugin(path string) (*Plugin, error) {
 		return nil, err
 	}
 
-	greet := funcSymbol.(func(...string) string)
+	greet := *funcSymbol.(*types.MyFunc)
 
 	log.Printf("Plugin successfully installed\n")
 
